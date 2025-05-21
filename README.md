@@ -1,4 +1,4 @@
-# Python - Sistema de Gestão Escola
+# Python - Sistema de Gestão Escolar
 
 Tópicos Especiais em Informática
 Prof. Fabrício G. Henrique  
