@@ -1,12 +1,12 @@
-#Python - Sistema de Gestão Escola
+# Python - Sistema de Gestão Escola
 
 Tópicos Especiais em Informática
 Prof. Fabrício G. Henrique  
   
-##Projeto Prático  
+## Projeto Prático  
 - Desenvolver uma aplicação utilizando a linguagem de programação Python de acordo com o tema escolhido em Sala de Aula.  
 
-##Requisitos  
+## Requisitos  
 - Implementar uma aplicação que contenha pelo menos dez interfaces gráficas (UI).  
 	O tipo de UI pode ser definido pelos integrantes: Console, Formulário ou Web.  
 - Armazenar dados de maneira persistente utilizando o SGBD da sua preferência.  
