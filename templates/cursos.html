@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Cursos</h2>
+    <form method="POST">
+        <div class="form-group"><label>Nome:</label><input name="nome" required></div>
+        <div class="form-group"><label>Descrição:</label><textarea name="descricao"></textarea></div>
+        <div class="form-group"><label>Carga Horária:</label><input type="number" name="carga_horaria" required></div>
+        <div class="form-group">
+            <label>Instrutor:</label>
+            <select name="instrutor_id" required>
+                {% for i in instrutores %}
+                    <option value="{{ i.id }}">{{ i.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <hr>
+    <table>
+        <thead><tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Carga</th>
+            <th>Instrutor</th>
+            <th>Ações</th>
+        </tr></thead>
+        <tbody>
+            {% for c in cursos %}
+            <tr>
+                <td>{{ c.nome }}</td>
+                <td>{{ c.descricao }}</td>
+                <td>{{ c.carga_horaria }}</td>
+                <td>{{ c.instrutor_nome }}</td>
+                <td>
+                    <form action="{{ url_for('editar_curso_view', id=c.id) }}" method="get" style="display:inline;">
+                        <button type="submit" class="btn">Editar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

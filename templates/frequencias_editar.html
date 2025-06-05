@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Editar Frequência</h2>
+<form method="post">
+    <label>Data:</label><br>
+    <input type="date" name="data" value="{{ frequencia['data'] }}" required><br><br>
+
+    <label>Presença:</label><br>
+    <select name="presenca" required>
+        <option value="1" {% if frequencia['presenca'] == 1 %}selected{% endif %}>Presente</option>
+        <option value="0" {% if frequencia['presenca'] == 0 %}selected{% endif %}>Ausente</option>
+    </select><br><br>
+
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}

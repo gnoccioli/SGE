@@ -1,0 +1,29 @@
+
+<form method="POST" enctype="multipart/form-data">
+    <h3>Importar por URL</h3>
+    <input type="hidden" name="acao" value="url">
+    <input type="text" name="url" placeholder="https://exemplo.com/dados.json" required>
+    <button type="submit">Importar da URL</button>
+</form>
+
+<hr>
+
+<form method="POST" enctype="multipart/form-data">
+    <h3>Importar por Arquivo (.json ou .zip)</h3>
+    <input type="hidden" name="acao" value="arquivo">
+    <input type="file" name="arquivo" accept=".json,.zip" required>
+    <button type="submit">Importar do Arquivo</button>
+</form>
+
+{% if dados_importados %}
+    <h3>Prévia dos Dados Importados</h3>
+    <pre>{{ dados_importados | tojson(indent=2) }}</pre>
+
+    {% if pode_inserir %}
+    <form method="POST">
+        <input type="hidden" name="acao" value="inserir">
+        <textarea name="dados_para_inserir" hidden>{{ dados_importados | tojson }}</textarea>
+        <button type="submit">Inserir nas Tabelas Principais</button>
+    </form>
+    {% endif %}
+{% endif %}

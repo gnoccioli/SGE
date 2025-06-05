@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Manutenção do Sistema</h2>
+
+    <form method="GET" action="{{ url_for('exportar_dados') }}">
+        <button type="submit">Exportar Dados (JSON + ZIP)</button>
+    </form>
+
+    <hr>
+
+    {% include "importar_parcial.html" %}
+
+    <hr>
+
+    <form method="POST" action="{{ url_for('resetar_sistema') }}" onsubmit="return confirm('Tem certeza que deseja apagar TODOS os dados do sistema? Essa ação é irreversível.')">
+        <button type="submit" class="btn btn-danger">Resetar Sistema</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Matrículas</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label>Aluno:</label>
+            <select name="aluno_id" required>
+                {% for a in alunos %}
+                    <option value="{{ a.id }}">{{ a.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Curso:</label>
+            <select name="curso_id" required>
+                {% for c in cursos %}
+                    <option value="{{ c.id }}">{{ c.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group"><label>Data:</label><input type="date" name="data_matricula" required></div>
+        <div class="form-group">
+            <label>Status:</label>
+            <select name="status" required>
+                <option value="ativo">Ativo</option>
+                <option value="concluído">Concluído</option>
+                <option value="cancelado">Cancelado</option>
+            </select>
+        </div>
+        <button type="submit">Matricular</button>
+    </form>
+    <hr>
+    <table>
+        <thead><tr>
+            <th>Aluno</th>
+            <th>Curso</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr></thead>
+        <tbody>
+            {% for m in matriculas %}
+            <tr>
+                <td>{{ m.aluno_nome }}</td>
+                <td>{{ m.curso_nome }}</td>
+                <td>{{ m.data_matricula }}</td>
+                <td>{{ m.status }}</td>
+                <td>
+                    <form action="{{ url_for('editar_matricula_view', id=m.id) }}" method="get" style="display:inline;">
+                        <button type="submit" class="btn">Editar</button>
+                    </form>
+                    <form action="{{ url_for('excluir_matricula_view', id=m.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn" onclick="return confirm('Deseja excluir esta matrícula?')">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

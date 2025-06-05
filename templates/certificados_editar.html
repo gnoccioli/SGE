@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Editar Certificado</h2>
+    <form method="POST">
+        <label>Aluno:</label>
+        <select name="aluno_id" required>
+            {% for a in alunos %}
+            <option value="{{ a['id'] }}" {% if a['id'] == certificado['aluno_id'] %}selected{% endif %}>
+                {{ a['nome'] }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>Curso:</label>
+        <select name="curso_id" required>
+            {% for c in cursos %}
+            <option value="{{ c['id'] }}" {% if c['id'] == certificado['curso_id'] %}selected{% endif %}>
+                {{ c['nome'] }}
+            </option>
+            {% endfor %}
+        </select>
+        <label>Data de Emissão:</label>
+        <input type="date" name="data_emissao" value="{{ certificado['data_emissao'] }}" required><br>
+        <label>Código de Verificação:</label>
+        <input type="text" name="codigo_verificacao" value="{{ certificado['codigo_verificacao'] }}" readonly>
+        <button type="submit" class="btn">Salvar</button>
+        <a href="{{ url_for('certificados') }}" class="btn">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

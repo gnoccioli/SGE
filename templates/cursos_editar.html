@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Editar Curso</h2>
+<form method="post">
+    <label>Nome:</label><br>
+    <input type="text" name="nome" value="{{ curso['nome'] }}" required><br><br>
+
+    <label>Descrição:</label><br>
+    <textarea name="descricao" required>{{ curso['descricao'] }}</textarea><br><br>
+
+    <label>Carga Horária:</label><br>
+    <input type="number" name="carga_horaria" value="{{ curso['carga_horaria'] }}" required><br><br>
+
+    <label>Instrutor (ID):</label><br>
+    <input type="number" name="instrutor_id" value="{{ curso['instrutor_id'] }}" required><br><br>
+
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}

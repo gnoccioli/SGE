@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema de Gestão Escolar{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='sge_logo.ico') }}" type="image/x-icon">
+</head>
+<body>
+<header>
+    <h1>Sistema de Gestão Escolar</h1>
+
+    {% if session.get('usuario') %}
+        <p>Bem-vindo, {{ session['usuario'] }}</p>
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Início</a> |
+            <a href="{{ url_for('usuarios') }}">Usuários</a> |
+            <a href="{{ url_for('alunos') }}">Alunos</a> |
+            <a href="{{ url_for('cursos') }}">Cursos</a> |
+            <a href="{{ url_for('matriculas') }}">Matrículas</a> |
+            <a href="{{ url_for('frequencias') }}">Frequências</a> |
+            <a href="{{ url_for('certificados') }}">Certificados</a> |
+            <a href="{{ url_for('manutencao') }}">Manutenção</a> |
+            <a href="{{ url_for('logout') }}">Sair</a>
+        </nav>
+    {% else %}
+        <nav>
+            <a href="{{ url_for('login') }}">Login</a> |
+        </nav>
+    {% endif %}
+
+    <hr>
+</header>
+
+    
+    <main>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <hr>
+    <p><a href="{{ url_for('sobre') }}">Sobre o Projeto</a></p>
+    </footer>
+</body>
+</html>
