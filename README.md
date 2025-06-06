@@ -1,3 +1,13 @@
+Instalação:
+
+git clone https://github.com/gnoccioli/SGE.git
+cd SGE
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python.exe .\app.py
+
+
 # Python - Sistema de Gestão Escolar
 
 Tópicos Especiais em Informática

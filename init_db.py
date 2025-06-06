@@ -93,10 +93,6 @@ def init_db():
             );
         ''')
 
-
-        # Dados iniciais (opcional)
-        cur.execute("INSERT OR IGNORE INTO usuarios (id, nome, email, senha, tipo) VALUES (1, 'Admin', 'admin@sge.com', 'admin123', 'admin')")
-
         con.commit()
         print("Banco de dados inicializado com sucesso.")
     except Exception as e:

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, send_file
 from database import *
+from init_db import init_db
 import os, json, zipfile, tempfile, shutil, requests
 
 app = Flask(__name__)
@@ -485,5 +486,12 @@ def sobre():
     return render_template('sobre.html')
 
 
+
 if __name__ == '__main__':
+
+    if not os.path.exists('sge.db'):
+        print("Arquivo sge.db não encontrado. Criando novo banco de dados...")
+        init_db()
+
+
     app.run(debug=True)
