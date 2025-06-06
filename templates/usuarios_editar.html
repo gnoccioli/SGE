@@ -13,9 +13,9 @@
 
     <label>Tipo:</label><br>
     <select name="tipo" required>
-        <option value="admin" {% if usuario['tipo'] == 'admin' %}selected{% endif %}>Administrador</option>
-        <option value="instrutor" {% if usuario['tipo'] == 'instrutor' %}selected{% endif %}>Instrutor</option>
-        <option value="atendente" {% if usuario['tipo'] == 'atendente' %}selected{% endif %}>Atendente</option>
+        <option value="Admin" {% if usuario['tipo'] == 'Admin' %}selected{% endif %}>Administrador</option>
+        <option value="Professor" {% if usuario['tipo'] == 'Professor' %}selected{% endif %}>Professor</option>
+        <option value="Secretaria" {% if usuario['tipo'] == 'Secretaria' %}selected{% endif %}>Secretaria</option>
     </select><br><br>
 
     <button type="submit">Salvar</button>

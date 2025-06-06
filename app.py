@@ -148,13 +148,13 @@ def cursos():
         nome = request.form['nome']
         descricao = request.form['descricao']
         carga_horaria = request.form['carga_horaria']
-        instrutor_id = request.form['instrutor_id']
-        adicionar_curso(nome, descricao, carga_horaria, instrutor_id)
+        professor_id = request.form['professor_id']
+        adicionar_curso(nome, descricao, carga_horaria, professor_id)
         flash('Curso cadastrado com sucesso')
 
     cursos = listar_cursos()
-    instrutores = [u for u in listar_usuarios() if u['tipo'] == 'instrutor']
-    return render_template('cursos.html', cursos=cursos, instrutores=instrutores)
+    professores = [u for u in listar_usuarios() if u['tipo'] == 'Professor']
+    return render_template('cursos.html', cursos=cursos, professores=professores)
 
 @app.route('/cursos/editar/<int:id>', methods=['GET', 'POST'])
 def editar_curso_view(id):
@@ -165,13 +165,14 @@ def editar_curso_view(id):
         nome = request.form['nome']
         descricao = request.form['descricao']
         carga_horaria = int(request.form['carga_horaria'])
-        instrutor_id = int(request.form['instrutor_id'])
-        atualizar_curso(id, nome, descricao, carga_horaria, instrutor_id)
+        professor_id = int(request.form['professor_id'])
+        atualizar_curso(id, nome, descricao, carga_horaria, professor_id)
         flash('Curso atualizado com sucesso!')
         return redirect(url_for('cursos'))
 
     curso = buscar_curso(id)
-    return render_template('cursos_editar.html', curso=curso)
+    professores = [u for u in listar_usuarios() if u['tipo'] == 'Professor']
+    return render_template('cursos_editar.html', curso=curso, professores=professores)
 
 
 

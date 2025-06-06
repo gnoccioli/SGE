@@ -2,15 +2,7 @@
 {% block content %}
 <div class="container">
     <h2>Login</h2>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="flash-messages">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
+
     <form method="POST">
         <div class="form-group">
             <label for="email">E-mail:</label>
@@ -30,6 +22,5 @@
         {% endif %}
 
     </form>
-    <p><a href="{{ url_for('sobre') }}">Sobre o projeto</a></p>
 </div>
 {% endblock %}

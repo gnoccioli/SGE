@@ -17,7 +17,7 @@ def init_db():
             nome TEXT,
             email TEXT UNIQUE,
             senha TEXT,
-            tipo TEXT CHECK(tipo IN ('admin', 'instrutor', 'atendente')),
+            tipo TEXT CHECK(tipo IN ('Admin', 'Professor', 'Secretaria')),
             ativo INTEGER DEFAULT 1,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
@@ -41,9 +41,9 @@ def init_db():
             nome TEXT,
             descricao TEXT,
             carga_horaria INTEGER,
-            instrutor_id INTEGER,
+            professor_id INTEGER,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (instrutor_id) REFERENCES usuarios(id)
+            FOREIGN KEY (professor_id) REFERENCES usuarios(id)
         )
         ''')
 

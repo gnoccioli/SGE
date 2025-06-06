@@ -7,10 +7,10 @@
         <div class="form-group"><label>Descrição:</label><textarea name="descricao"></textarea></div>
         <div class="form-group"><label>Carga Horária:</label><input type="number" name="carga_horaria" required></div>
         <div class="form-group">
-            <label>Instrutor:</label>
-            <select name="instrutor_id" required>
-                {% for i in instrutores %}
-                    <option value="{{ i.id }}">{{ i.nome }}</option>
+            <label>Coordenador:</label>
+            <select name="professor_id" required>
+                {% for professor in professores %}
+                    <option value="{{ professor.id }}">{{ professor.nome }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -22,7 +22,7 @@
             <th>Nome</th>
             <th>Descrição</th>
             <th>Carga</th>
-            <th>Instrutor</th>
+            <th>Coordenador</th>
             <th>Ações</th>
         </tr></thead>
         <tbody>
@@ -31,7 +31,7 @@
                 <td>{{ c.nome }}</td>
                 <td>{{ c.descricao }}</td>
                 <td>{{ c.carga_horaria }}</td>
-                <td>{{ c.instrutor_nome }}</td>
+                <td>{{ c.professor_nome }}</td>
                 <td>
                     <form action="{{ url_for('editar_curso_view', id=c.id) }}" method="get" style="display:inline;">
                         <button type="submit" class="btn">Editar</button>

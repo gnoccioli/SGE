@@ -113,21 +113,21 @@ def listar_cursos():
     con = conectar()
     cur = con.cursor()
     cur.execute('''
-        SELECT cursos.*, usuarios.nome AS instrutor_nome
+        SELECT cursos.*, usuarios.nome AS professor_nome
         FROM cursos
-        LEFT JOIN usuarios ON cursos.instrutor_id = usuarios.id
+        LEFT JOIN usuarios ON cursos.professor_id = usuarios.id
     ''')
     cursos = cur.fetchall()
     con.close()
     return cursos
 
-def adicionar_curso(nome, descricao, carga_horaria, instrutor_id):
+def adicionar_curso(nome, descricao, carga_horaria, professor_id):
     con = conectar()
     cur = con.cursor()
     cur.execute('''
-        INSERT INTO cursos (nome, descricao, carga_horaria, instrutor_id, created_at)
+        INSERT INTO cursos (nome, descricao, carga_horaria, professor_id, created_at)
         VALUES (?, ?, ?, ?, datetime('now'))
-    ''', (nome, descricao, carga_horaria, instrutor_id))
+    ''', (nome, descricao, carga_horaria, professor_id))
     con.commit()
     con.close()
 
@@ -146,13 +146,13 @@ def buscar_curso(id):
     con.close()
     return curso
 
-def atualizar_curso(id, nome, descricao, carga_horaria, instrutor_id):
+def atualizar_curso(id, nome, descricao, carga_horaria, professor_id):
     con = conectar()
     cur = con.cursor()
     cur.execute('''
-        UPDATE cursos SET nome = ?, descricao = ?, carga_horaria = ?, instrutor_id = ?
+        UPDATE cursos SET nome = ?, descricao = ?, carga_horaria = ?, professor_id = ?
         WHERE id = ?
-    ''', (nome, descricao, carga_horaria, instrutor_id, id))
+    ''', (nome, descricao, carga_horaria, professor_id, id))
     con.commit()
     con.close()
 
@@ -369,9 +369,9 @@ def importar_para_tabelas_principais(dados):
     # CURSOS
     for c in dados.get('cursos', []):
         cur.execute('''
-            INSERT INTO cursos (nome, descricao, carga_horaria, instrutor_id, created_at)
+            INSERT INTO cursos (nome, descricao, carga_horaria, professor_id, created_at)
             VALUES (?, ?, ?, ?, ?)
-        ''', (c['nome'], c.get('descricao'), c['carga_horaria'], c['instrutor_id'], c.get('created_at', None)))
+        ''', (c['nome'], c.get('descricao'), c['carga_horaria'], c['professor_id'], c.get('created_at', None)))
 
     # MATRÍCULAS
     for m in dados.get('matriculas', []):

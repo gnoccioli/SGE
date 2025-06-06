@@ -11,8 +11,15 @@
     <label>Carga Horária:</label><br>
     <input type="number" name="carga_horaria" value="{{ curso['carga_horaria'] }}" required><br><br>
 
-    <label>Instrutor (ID):</label><br>
-    <input type="number" name="instrutor_id" value="{{ curso['instrutor_id'] }}" required><br><br>
+    <label for="professor_id">Coordenador:</label>
+    <select name="professor_id" id="professor_id" required>
+        {% for professor in professores %}
+            <option value="{{ professor.id }}"
+                {% if professor.id == curso.professor_id %}selected{% endif %}>
+                {{ professor.nome }}
+            </option>
+        {% endfor %}
+    </select>
 
     <button type="submit">Salvar</button>
 </form>
