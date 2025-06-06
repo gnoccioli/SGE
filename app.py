@@ -94,7 +94,7 @@ def alternar_status_usuario(id):
 
     usuario = buscar_usuario(id)
     if usuario:
-        alternar_status_usuario(id, usuario['ativo'])
+        alternar_status_usuario_db(id, usuario['ativo'])
         flash(f"Usuário {'ativado' if not usuario['ativo'] else 'inativado'} com sucesso!")
     else:
         flash("Usuário não encontrado.")

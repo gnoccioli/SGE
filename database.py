@@ -54,7 +54,7 @@ def atualizar_usuario(id, nome, email, senha, tipo):
     con.commit()
     con.close()
 
-def alternar_status_usuario(id, status_atual):
+def alternar_status_usuario_db(id, status_atual):
     novo_status = 0 if status_atual else 1
     con = conectar()
     cur = con.cursor()
