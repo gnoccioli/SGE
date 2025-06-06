@@ -303,7 +303,7 @@ def editar_certificado_view(id):
     alunos = listar_alunos()
     cursos = listar_cursos()
 
-    # 🆕 Gera novo código automático e substitui no dicionário
+    # Gera novo código automático e substitui no dicionário
     novo_codigo = gerar_codigo_certificado()
     certificado = dict(certificado)  # converter sqlite3.Row em dict editável
     certificado['codigo_verificacao'] = novo_codigo
@@ -460,11 +460,6 @@ def importar():
                 return redirect(url_for('importar'))
 
         elif acao == 'inserir':
-            print("Recebido:", request.form['dados_para_inserir'])          # Diagnóstico
-            print("===== DEBUG =====")                                      # Diagnóstico
-            print("Tipo:", type(request.form['dados_para_inserir']))        # Diagnóstico
-            print("Conteúdo bruto:", request.form['dados_para_inserir'])    # Diagnóstico
-            print("=================")                                      # Diagnóstico
 
             dados_importados = json.loads(request.form['dados_para_inserir'])
             importar_para_tabelas_principais(dados_importados)
